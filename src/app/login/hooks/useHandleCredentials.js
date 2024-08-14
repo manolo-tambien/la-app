@@ -1,14 +1,18 @@
-import { useNavigate } from 'react-router-dom';
+// import { useRouter } from 'next/router';
+import {useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react';
-import { login } from '../../services/login/login.services';
-import { useUserActions } from '../../hooks/store/useUserActions';
-import { isEmailValid, showToast } from '../../common/util/utils';
-import PersistenceManager from '../../persistence/persistence';
+// import { login } from '../../services/login/login.services';
+import { login } from "../../../services/login/login.services";
+// import { useUserActions } from '../../hooks/store/useUserActions';
+import { useUserActions } from "../../../hooks/store/useUserActions";
+// import { isEmailValid, showToast } from '../../common/util/utils';
+// import PersistenceManager from '../../../persistence/persistence';
+import PersistenceManager from "../../../persistence/persistence"
+import { isEmailValid } from '../../../common/util/utils';
 
 export const useHandleCredentials = () => {
-  const navigate = useNavigate();
+  const router = useRouter();
   const { updateUser } = useUserActions();
-
   const [failed, setFailed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
@@ -37,6 +41,7 @@ export const useHandleCredentials = () => {
 
   const handlePasswordLogin = async (event) => {
     event.preventDefault();
+    console.log("email:" + email.value);
     setFailed(false);
     try {
       setLoading(true);
@@ -47,11 +52,12 @@ export const useHandleCredentials = () => {
         PersistenceManager.setItem('userToken', response.token);
         updateUser(user);
         updateCredentials();
-        navigate('/');
+        router.push('/');
       }
     } catch (error) {
       if (error.message === "Failed to fetch") {
-        showToast('Error en la solicitud, inténtalo de nuevo más tarde.', 'error');
+        // showToast('Error en la solicitud, inténtalo de nuevo más tarde.', 'error');
+        console.log("'Error en la solicitud, inténtalo de nuevo más tarde.'");
       } else {
         setFailed(true);
         setPassword('');
@@ -68,22 +74,15 @@ export const useHandleCredentials = () => {
       PersistenceManager.removeItem("userCredentials");
     }
   }
-
-  const handleSpecialKey = (e) => {
-    if (e.keyCode === 13 && email && password)
-      handlePasswordLogin(e);
-  };
-
   return {
     loading,
     failed,
     setEmail,
     email,
-    emailError,
+    // emailError,
     handleEmailChange,
-    setPassword,
+    // setPassword,
     password,
-    handleSpecialKey,
     handlePasswordLogin,
     checked,
     handleCheckboxChange

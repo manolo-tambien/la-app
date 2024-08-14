@@ -1,3 +1,4 @@
+"use client"
 import { useHandleCredentials } from './hooks/useHandleCredentials'
 import {
   Card,
@@ -10,21 +11,22 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
 
-const {
-    loading,
-    failed,
-    email,
-    emailError,
-    handleEmailChange,
-    setPassword,
-    password,
-    handleSpecialKey,
-    handlePasswordLogin,
-    checked,
-    handleCheckboxChange
-  } = useHandleCredentials();
+
  
 export default function LogIn() {
+  const {
+    loading,
+    failed,
+    // emailError,
+    email,
+    handleEmailChange,
+    // setPassword,
+    password,
+    handlePasswordLogin,
+    // checked,
+    // handleCheckboxChange
+  } = useHandleCredentials();
+
   return (
     <Card className="mx-auto max-w-sm">
       <CardHeader>
@@ -40,8 +42,10 @@ export default function LogIn() {
             <Input
               id="email"
               type="email"
+              value={email}
+              onChange={handleEmailChange}
               placeholder="m@example.com"
-              required
+               
             />
           </div>
           <div className="grid gap-2">
@@ -55,7 +59,7 @@ export default function LogIn() {
           </div>
           <Button 
             type="submit"
-             
+             onClick={handlePasswordLogin}
             
            className="w-full">
             Login
