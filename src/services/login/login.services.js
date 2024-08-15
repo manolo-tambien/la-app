@@ -1,6 +1,5 @@
 export const login = async ({ email, password }) => {
-    const apiUrl = import.meta.env.VITE_API_URL;
-  
+  const apiUrl = process.env.NEXT_PUBLIC_API_URL;
     if (!email && !password) throw new Error('Datos incorrectos.');
     const response = await fetch(apiUrl + 'login', {
       method: 'POST',

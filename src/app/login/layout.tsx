@@ -9,8 +9,8 @@ import type { Metadata } from 'next';
  
 
 export const metadata: Metadata = {
-  title: 'Nested Layouts',
-  description: 'Nested Layouts',
+  title: 'Max4',
+  description: 'Max4',
 };
 
 interface RootLayoutProps {

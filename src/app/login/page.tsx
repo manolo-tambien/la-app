@@ -20,7 +20,7 @@ export default function LogIn() {
     // emailError,
     email,
     handleEmailChange,
-    // setPassword,
+    setPassword,
     password,
     handlePasswordLogin,
     // checked,
@@ -55,7 +55,7 @@ export default function LogIn() {
                 Forgot your password?
               </Link> */}
             </div>
-            <Input id="password" type="password" required />
+            <Input onChange={(e) => setPassword(e.target.value.trim())} id="password" type="password" required />
           </div>
           <Button 
             type="submit"

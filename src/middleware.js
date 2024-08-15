@@ -1,8 +1,11 @@
 import { NextResponse } from 'next/server'
+import PersistenceManager from "./persistence/persistence"
 
 export function middleware(request) {
-//   const token = request.cookies.get('auth_token')?.value
-  const token = false;
+  //const token = request.cookies.get('auth_token')?.value
+  //onst userToken = PersistenceManager.getItem("userToken");
+   const token = true;
+   
 
   if (!token && !request.nextUrl.pathname.startsWith('/login')) {
     return NextResponse.redirect(new URL('/login', request.url))
