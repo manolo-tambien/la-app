@@ -1,12 +1,6 @@
-// import { useRouter } from 'next/router';
-// import {useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react';
-// import { login } from '../../services/login/login.services';
 import { login } from "../../../services/login/login.services";
-// import { useUserActions } from '../../hooks/store/useUserActions';
 import { useUserActions } from "../../../hooks/store/useUserActions";
-// import { isEmailValid, showToast } from '../../common/util/utils';
-// import PersistenceManager from '../../../persistence/persistence';
 import PersistenceManager from "../../../persistence/persistence"
 import { isEmailValid } from '../../../common/util/utils';
 import { useCustomRouter } from "../../../hooks/useCustomRouter"
@@ -53,10 +47,9 @@ export const useHandleCredentials = () => {
          
         const user = response.user;
         PersistenceManager.setItem('userToken', response.token);
+        PersistenceManager.setCookieItem('userToken', response.token);
         updateUser(user);
         updateCredentials();
-        console.log("Redirigiendo a la raíz...");
-        // router.push('/demo');
         redirectToRoot();
       }
     } catch (error) {
@@ -64,7 +57,6 @@ export const useHandleCredentials = () => {
         // showToast('Error en la solicitud, inténtalo de nuevo más tarde.', 'error');
         console.log("'Error en la solicitud, inténtalo de nuevo más tarde.'");
       } else {
-        console.log("catch en el else" + error)
         setFailed(true);
         setPassword('');
       }
@@ -74,6 +66,7 @@ export const useHandleCredentials = () => {
   };
 
   const updateCredentials = () => {
+    // TODO: validar que hayan dejado marcado el boton de recordar las credenciales
     if (true) {
       PersistenceManager.setItem("userCredentials", { email, password });
     } else {

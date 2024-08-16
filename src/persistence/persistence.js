@@ -1,4 +1,12 @@
+import Cookies from 'js-cookie';
+
 const PersistenceManager = {
+  setCookieItem: (key, value) =>{
+    Cookies.set(key, value, { expires: 1 });
+  },
+  getCookieItem: (key) =>{
+    return Cookies.get(key);
+  },
   getItem: (key) => {
     try {
       const serializedValue = localStorage.getItem(key);
