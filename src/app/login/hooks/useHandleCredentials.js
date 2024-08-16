@@ -74,7 +74,7 @@ export const useHandleCredentials = () => {
   };
 
   const updateCredentials = () => {
-    if (checked) {
+    if (true) {
       PersistenceManager.setItem("userCredentials", { email, password });
     } else {
       PersistenceManager.removeItem("userCredentials");
