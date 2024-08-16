@@ -1,18 +1,16 @@
-"use client"
-import { useHandleCredentials } from './hooks/useHandleCredentials'
+"use client";
+import { useHandleCredentials } from "./hooks/useHandleCredentials";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Button } from "@/components/ui/button";
 
-
- 
 export default function LogIn() {
   const {
     loading,
@@ -45,7 +43,6 @@ export default function LogIn() {
               value={email}
               onChange={handleEmailChange}
               placeholder="m@example.com"
-               
             />
           </div>
           <div className="grid gap-2">
@@ -55,23 +52,22 @@ export default function LogIn() {
                 Forgot your password?
               </Link> */}
             </div>
-            <Input onChange={(e) => setPassword(e.target.value.trim())} id="password" type="password" required />
+            <Input
+              onChange={(e) => setPassword(e.target.value.trim())}
+              id="password"
+              type="password"
+              required
+            />
           </div>
-          <Button 
+          <Button
             type="submit"
-             onClick={handlePasswordLogin}
-            
-           className="w-full">
+            onClick={handlePasswordLogin}
+            className="w-full"
+          >
             Login
           </Button>
         </div>
-        {/* <div className="mt-4 text-center text-sm">
-          Don&apos;t have an account?{" "}
-          <Link href="#" className="underline">
-            Sign up
-          </Link>
-        </div> */}
       </CardContent>
     </Card>
-  )
+  );
 }

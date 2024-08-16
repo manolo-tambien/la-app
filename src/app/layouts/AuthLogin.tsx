@@ -1,3 +1,4 @@
+import "../globals.css";
 import type { Metadata } from "next";
 import ClientProvider from "@/components/ClientProvider";
 import {
@@ -11,19 +12,19 @@ export const metadata: Metadata = {
   title: "Max4",
   description: "Max4",
 };
-
 interface RootLayoutProps {
   children: React.ReactNode;
 }
-
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html>
-      <body>
-        <ClientProvider>
-          <TooltipProvider>{children}</TooltipProvider>
-        </ClientProvider>
-      </body>
-    </html>
+    <>
+      <html>
+        <body>
+          <ClientProvider>
+            <TooltipProvider>{children}</TooltipProvider>
+          </ClientProvider>
+        </body>
+      </html>
+    </>
   );
 }

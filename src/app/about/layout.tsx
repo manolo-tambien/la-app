@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import AuthLogin from "@/app/layouts/AuthLogin";
+import MainLayout from "@/app/layouts/MainLayout";
 
 export const metadata: Metadata = {
   title: "Max4",
@@ -9,5 +9,5 @@ interface RootLayoutProps {
   children: React.ReactNode;
 }
 export default function RootLayout({ children }: RootLayoutProps) {
-  return <AuthLogin>{children}</AuthLogin>;
+  return <MainLayout>{children}</MainLayout>;
 }

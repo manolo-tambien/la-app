@@ -1,10 +1,9 @@
  
-import Image from "next/image";
-
-  
-
+import  MainLayout from "@/app/layouts/MainLayout";
 export default function Home() {
   return (
-  <div>Home</div>
+    <MainLayout>
+      <h1>Home</h1>
+    </MainLayout>
   );
 }
