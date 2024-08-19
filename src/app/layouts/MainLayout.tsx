@@ -5,6 +5,7 @@ import { LeftBarMobile } from "@/components/layout/left-bar-mobile";
 import { BreadcrumbTop } from "@/components/breadcrumb";
 import { ProfilePicMenu } from "@/components/profile-pic-menu";
 import { Button } from "@/components/ui/button";
+import withAuth  from "@/hoc/withAuth";
 
 export const metadata: Metadata = {
   title: "Create Next App",
