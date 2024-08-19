@@ -23,7 +23,6 @@ const withAuth = (WrappedComponent: React.ComponentType) => {
         }
 
         try {
-          // const decodedToken = jwtDecode<DecodedToken>(token);
           const decodedToken = decodeJwt(token);
           decodedToken.exp = decodedToken?.exp ?? 0;
 
