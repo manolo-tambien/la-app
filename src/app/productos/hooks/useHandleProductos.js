@@ -6,14 +6,12 @@ import { isEmailValid } from '../../../common/util/utils';
 import { useCustomRouter } from "../../../hooks/useCustomRouter"
 
 export const useHandleCredentials = () => {
-  // const router = useRouter();
   const { redirectToRoot } = useCustomRouter();
   const { updateUser } = useUserActions();
   const [failed, setFailed] = useState(false);
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [emailError, setEmailError] = useState(false);
   const [checked, setChecked] = useState(false);
 
   useEffect(() => {
@@ -25,15 +23,6 @@ export const useHandleCredentials = () => {
     }
   }, []);
 
-  const handleCheckboxChange = (event) => {
-    setChecked(event.target.checked);
-  }
-
-  const handleEmailChange = (e) => {
-    const value = e.target.value.trim();
-    setEmail(value);
-    setEmailError(!isEmailValid(value));
-  };
 
   const handlePasswordLogin = async (event) => {
     event.preventDefault();
@@ -49,7 +38,6 @@ export const useHandleCredentials = () => {
         PersistenceManager.setItem('userToken', response.token);
         PersistenceManager.setCookieItem('userToken', response.token);
         updateUser(user);
-        updateCredentials();
         redirectToRoot();
       }
     } catch (error) {
@@ -65,25 +53,14 @@ export const useHandleCredentials = () => {
     }
   };
 
-  const updateCredentials = () => {
-    // TODO: validar que hayan dejado marcado el boton de recordar las credenciales
-    if (true) {
-      PersistenceManager.setItem("userCredentials", { email, password });
-    } else {
-      PersistenceManager.removeItem("userCredentials");
-    }
-  }
   return {
     loading,
     failed,
     setEmail,
     email,
     // emailError,
-    handleEmailChange,
     setPassword,
     password,
-    handlePasswordLogin,
     checked,
-    handleCheckboxChange
   }
 }
