@@ -47,7 +47,7 @@ export const useHandleCredentials = () => {
          
         const user = response.user;
         PersistenceManager.setItem('userToken', response.token);
-        PersistenceManager.setCookieItem('userToken', response.token);
+        
         updateUser(user);
         updateCredentials();
         redirectToRoot();
