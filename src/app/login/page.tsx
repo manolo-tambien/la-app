@@ -10,6 +10,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
+import { SymbolIcon } from "@radix-ui/react-icons";
 
 export default function LogIn() {
   const {
@@ -60,10 +61,16 @@ export default function LogIn() {
             />
           </div>
           <Button
+            id="login-btn"
             type="submit"
             onClick={handlePasswordLogin}
             className="w-full"
           >
+            {loading ? (
+              <SymbolIcon className="animate-spin rounded-full mr-2"></SymbolIcon>
+            ) : (
+              ""
+            )}
             Login
           </Button>
         </div>
